@@ -1,20 +1,867 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sipoueh</title>
-    <style>
-        .h1{
-            text-align:center;
-            padding:20px;
-            border:2px dashed green;
-            margin:20px auto;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOUANG Justin — Père Coach | 1953–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D89A;
+    --gold-dark: #8B6914;
+    --deep: #1A1207;
+    --warm: #2E1F0A;
+    --cream: #FAF6EE;
+    --cream2: #F3ECD8;
+    --muted: #6B5A3E;
+    --text: #2C1F0E;
+    --white: #FFFDF7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--deep);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, #3D2A0A 0%, #1A1207 60%);
+    z-index: 0;
+  }
+
+  .hero-border {
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .hero-ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .hero-ornament span {
+    height: 1px;
+    width: 60px;
+    background: var(--gold);
+    opacity: 0.6;
+    display: block;
+  }
+  .hero-ornament i {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    font-style: normal;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 5px;
+    opacity: 0.8;
+  }
+
+  .hero-photo-frame {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 5px;
+    margin: 0 auto 2.5rem;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .hero-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+
+  .hero-dates {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-surname {
+    color: var(--gold);
+  }
+
+  .hero-nickname {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--gold-light);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .hero-verse {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .hero-verse cite {
+    display: block;
+    color: var(--gold);
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(201,168,76,0.5);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--deep);
+    z-index: 100;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .section-label span {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold-dark);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+
+  /* ── BIOGRAPHIE ── */
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+  }
+
+  .bio-card {
+    background: var(--white);
+    padding: 2rem;
+  }
+
+  .bio-card-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold-dark);
+    margin-bottom: 0.6rem;
+  }
+
+  .bio-card-value {
+    font-size: 1.05rem;
+    color: var(--deep);
+    font-weight: 400;
+  }
+
+  .bio-card-value strong {
+    display: block;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── TEXTE BIOGRAPHIE ── */
+  .bio-text { color: var(--muted); font-size: 1rem; line-height: 1.85; }
+  .bio-text + .bio-text { margin-top: 1.5rem; }
+
+  .bio-text-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--deep);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .bio-text-title::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.375rem;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+  }
+
+  .timeline-period {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--deep);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-org {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .timeline-desc {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── VALEURS ── */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .value-card {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .value-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--deep);
+    margin-bottom: 0.4rem;
+  }
+
+  .value-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── TÉMOIGNAGES ── */
+  .temoignages-bg {
+    background: var(--deep);
+    padding: 5rem 0;
+  }
+
+  .temoignages-bg section {
+    max-width: 860px;
+  }
+
+  .temoignages-bg .section-label span { color: var(--gold); }
+  .temoignages-bg .section-title { color: var(--white); }
+
+  .temoignage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .temoignage-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .temoignage-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .temoignage-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.85;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .temoignage-author {
+    margin-top: 1.2rem;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* ── FAMILLES ── */
+  .familles-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .famille-tag {
+    background: var(--white);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--deep);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .footer-verse {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+  }
+
+  .footer-ref {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.4);
+    margin-bottom: 2rem;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 400;
+  }
+
+  /* ── SEPARATEUR ── */
+  .sep {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.4;
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    margin: 0;
+    padding: 1rem 0;
+  }
+
+  .alt-bg { background: var(--cream2); }
+
+  @media (max-width: 640px) {
+    nav ul { flex-wrap: wrap; }
+    nav a { padding: 0.75rem 0.8rem; font-size: 9px; }
+    .bio-grid { grid-template-columns: 1fr; }
+    .temoignage-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
 </head>
 <body>
-   <h1> I'm main caracter</h1>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-border"></div>
+  <div class="hero-content">
+
+    <div class="hero-photo-frame">
+      <span class="hero-initials">GJ</span>
+    </div>
+
+    <div class="hero-dates">1953 — 2026</div>
+
+    <h1>
+      <span class="hero-surname">GOUANG</span> Justin
+    </h1>
+
+    <p class="hero-nickname">dit « Père Coach »</p>
+
+    <div class="hero-ornament">
+      <span></span>
+      <i>Professeur · Sportif · Père</i>
+      <span></span>
+    </div>
+
+    <p class="hero-verse">
+      J'ai combattu le bon combat, j'ai achevé la course, j'ai gardé la foi.
+      Désormais, la couronne de justice m'est réservée.
+      <cite>2 Timothée 4 : 7–8</cite>
+    </p>
+
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</header>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+  <ul>
+    <li><a href="#biographie">Biographie</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#valeurs">Valeurs</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#familles">Familles</a></li>
+  </ul>
+</nav>
+
+<!-- ══ BIOGRAPHIE ══ -->
+<section id="biographie">
+  <div class="section-label"><span>Biographie</span></div>
+  <h2 class="section-title">Un homme né sous le signe de la persévérance</h2>
+
+  <div class="bio-grid">
+    <div class="bio-card">
+      <div class="bio-card-label">Nom complet</div>
+      <div class="bio-card-value"><strong>GOUANG Justin</strong>dit « Père Coach »</div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-card-label">Naissance — Décès</div>
+      <div class="bio-card-value"><strong>1953 — 4 avril 2026</strong>Bafoussam, Cameroun</div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-card-label">Profession</div>
+      <div class="bio-card-value"><strong>Professeur d'EPS</strong>Catégorie A2</div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-card-label">Passion sportive</div>
+      <div class="bio-card-value"><strong>Coach de football</strong>Racing Club de Bafoussam</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 2rem;">
+    <div class="bio-text-title">Parcours académique</div>
+    <p class="bio-text">
+      Sportif d'exception, GOUANG Justin effectue son premier cycle au Lycée Classique de Bafoussam, 
+      avant de rejoindre le Collège Saint-Michel à Douala, où il décroche son BEPC, son Probatoire et son 
+      Baccalauréat. Il poursuit ensuite ses études supérieures à l'INJS de Dschang, obtenant son Master 
+      qui lui ouvre les portes de l'enseignement en tant que professeur d'EPS catégorie A2.
+    </p>
+  </div>
+
+  <div>
+    <div class="bio-text-title">Une vie dédiée à la jeunesse</div>
+    <p class="bio-text">
+      Attaquant de pointe redoutable dans sa jeunesse, il fait les beaux jours de l'Aigle de Dschang avant 
+      de porter avec fierté les couleurs du Racing Club de Bafoussam — son club de cœur, qu'il dirigera 
+      ensuite en tant que coach pendant 15 années de bons et loyaux services.
+    </p>
+    <p class="bio-text" style="margin-top: 1rem;">
+      Professeur d'EPS, il exerce successivement au Collège Malanguai et au Lycée de Oyack à Bafoussam, 
+      puis au Lycée Classique, au Lycée Bilingue et au Collège Saint-Thomas. Il laisse l'empreinte d'un 
+      pédagogue rigoureux, passionné par l'éducation de la jeunesse camerounaise de Douala et de Bafoussam.
+    </p>
+  </div>
+</section>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- ══ PARCOURS ══ -->
+<div class="alt-bg">
+<section id="parcours">
+  <div class="section-label"><span>Parcours</span></div>
+  <h2 class="section-title">Une trajectoire d'excellence</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Études secondaires</div>
+      <div class="timeline-role">Lycée Classique de Bafoussam</div>
+      <div class="timeline-org">Premier cycle — Bafoussam</div>
+      <p class="timeline-desc">Début d'un parcours scolaire marqué par la rigueur et l'amour du sport.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">BEPC · Probatoire · Baccalauréat</div>
+      <div class="timeline-role">Collège Saint-Michel</div>
+      <div class="timeline-org">Douala, Cameroun</div>
+      <p class="timeline-desc">Obtention des diplômes du secondaire tout en conciliant études et pratique sportive de haut niveau.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Études supérieures · Master</div>
+      <div class="timeline-role">Institut National de la Jeunesse et des Sports (INJS)</div>
+      <div class="timeline-org">Dschang, Cameroun</div>
+      <p class="timeline-desc">Formation d'élite qui forge à la fois le sportif de haut niveau et le futur enseignant. Il joue en parallèle comme attaquant de pointe pour l'Aigle de Dschang.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Carrière enseignante</div>
+      <div class="timeline-role">Professeur d'EPS — Catégorie A2</div>
+      <div class="timeline-org">Collège Malanguai · Lycée de Oyack · Lycée Classique · Lycée Bilingue · Collège Saint-Thomas — Bafoussam & Douala</div>
+      <p class="timeline-desc">Plus de deux décennies consacrées à l'éducation physique et sportive de la jeunesse camerounaise. Un pédagogue rigoureux qui laisse une empreinte durable dans chaque établissement.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">15 ans de coaching · Retraite</div>
+      <div class="timeline-role">Coach — Racing Club de Bafoussam</div>
+      <div class="timeline-org">Son club de cœur</div>
+      <p class="timeline-desc">15 années de bons et loyaux services sur les bancs de touche du Racing Club de Bafoussam. Après cette carrière bien remplie, il prend une retraite méritée dans sa demeure de Bafoussam, qu'il a bâtie avec fierté.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: #C9A84C; box-shadow: 0 0 0 4px rgba(201,168,76,0.2);"></div>
+      <div class="timeline-period">4 avril 2026</div>
+      <div class="timeline-role">Rappelé à Dieu</div>
+      <div class="timeline-org">Bafoussam, Cameroun</div>
+      <p class="timeline-desc">Il s'est éteint en laissant derrière lui le souvenir d'un homme protecteur, modèle de force, d'intégrité et de générosité pour ses enfants et petits-enfants.</p>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- ══ VALEURS ══ -->
+<section id="valeurs">
+  <div class="section-label"><span>Valeurs & Passions</span></div>
+  <h2 class="section-title">Ce qui animait son âme</h2>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">⚽</div>
+      <div class="value-name">Le Football</div>
+      <p class="value-desc">Attaquant, puis coach passionné du Racing Club de Bafoussam pendant 15 ans.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🎓</div>
+      <div class="value-name">L'Enseignement</div>
+      <p class="value-desc">Professeur d'EPS rigoureux, dévoué à l'éducation de la jeunesse camerounaise.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🏊</div>
+      <div class="value-name">La Natation</div>
+      <p class="value-desc">Sportif complet, il aimait la natation comme discipline de vie et de discipline.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">♟️</div>
+      <div class="value-name">Le Jeu de dames</div>
+      <p class="value-desc">Les joutes stratégiques au jeu de dames — un esprit toujours en éveil.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">⚜️</div>
+      <div class="value-name">Le Scoutisme</div>
+      <p class="value-desc">Ancien scout dès 18 ans, il a gardé toute sa vie les valeurs de service et de droiture.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">👨‍👩‍👧‍👦</div>
+      <div class="value-name">La Famille</div>
+      <p class="value-desc">Sa plus grande réussite. Père dévoué et grand-père aimant — un pilier pour les siens.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TÉMOIGNAGES ══ -->
+<div class="temoignages-bg" id="temoignages">
+<section>
+  <div class="section-label"><span>Témoignages</span></div>
+  <h2 class="section-title">Paroles de ceux qui l'ont aimé</h2>
+
+  <div class="temoignage-grid">
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Mon amour de père, tu m'as tellement aimé et chéri de ton vivant. Tu m'as donné tout ce que tu avais... 
+        Je n'est jamais manqué de rien à tes côtés papa chéri. Tu t'es sacrifier pour moi. Tu m'a appris à me 
+        battre dans la vie. Je t'aime Daddy comme je t'aimais t'appeler. Tu part auprès de Dieu maintenant de 
+        la veille sur nous tes enfants. Je t'aime papa à jamais dans mon cœur.
+      </p>
+      <div class="temoignage-author">— Une fille</div>
+    </div>
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Mon père, mon héros. Tu m'as appris à connaître la vie d'un homme, tu m'as appris à manger à la sueur 
+        de mon front, tu m'as appris à marcher seul que d'être mal accompagner. Papa mon héros je serais pas 
+        trop long — garde nous, protège nous et que le père tout puissant t'accueille dans son royaume. 
+        Papa GOUANG Justin dit Père Coach, vas et repose en Paix.
+      </p>
+      <div class="temoignage-author">— Un fils</div>
+    </div>
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Justin mon homme, le père de mes enfants. Tu laisse une blessure dans mon cœur et dans le cœur de nos 
+        enfants. Mes saches que tu as laissé un vide et je ne saurais comment combler cela. Car à jamais tu 
+        restera gravé dans nos cœurs Justin. Vas et repose en paix — à toi les fleurs et à nous les pleurs.
+      </p>
+      <div class="temoignage-author">— Son épouse</div>
+    </div>
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Papa je te remercie pour les bons moments passés avec toi. C'est dur de se séparer mais Dieu à décider 
+        ainsi et je sais que tu vas bénir ta progéniture là-bas dans les cieux. Merci papa je t'aime et sache 
+        que ton véritable tombeau c'est nos cœurs. Repose en paix mon super héros.
+      </p>
+      <div class="temoignage-author">— Un enfant</div>
+    </div>
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Tu as été et tu seras toujours mon modèle. J'espère que tu me guideras comme tu l'as toujours fait et 
+        que tu seras toujours fière de moi grand homme, mon père, mon papa. Nous resterons fort comme tu nous 
+        l'as montré, comme tu l'as toujours été. Je t'aime fort papa. Que ton âme Repose en Paix.
+      </p>
+      <div class="temoignage-author">— Un enfant</div>
+    </div>
+
+    <div class="temoignage-card">
+      <p class="temoignage-text">
+        Mon petit papa chéri, à mes yeux tu as toujours été un grand modèle et tu le seras à jamais. Aujourd'hui 
+        tu n'es plus présent en chair et en os mais je sais que tu es là juste prêt de nous. Tu demeures le 
+        meilleur papa du monde. Nous t'aimons à jamais Coach. Repose en Paix.
+      </p>
+      <div class="temoignage-author">— Un enfant</div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- ══ FAMILLES ══ -->
+<section id="familles">
+  <div class="section-label"><span>Familles endeuillées</span></div>
+  <h2 class="section-title">Ceux qui partagent ce deuil</h2>
+
+  <p class="bio-text" style="margin-bottom: 1.5rem;">
+    Les familles suivantes ont la profonde douleur d'annoncer le décès de leur père et grand-père, 
+    <strong>PAPA GOUANG Justin</strong>, survenu le <strong>4 Avril 2026</strong> à Bafoussam.
+  </p>
+
+  <div class="familles-grid">
+    <div class="famille-tag">Famille NDONGAM Elene</div>
+    <div class="famille-tag">Famille TAFAM</div>
+    <div class="famille-tag">Famille Deffo MEGAM</div>
+    <div class="famille-tag">Famille Poline MEMDJO</div>
+    <div class="famille-tag">Famille METAH FAM</div>
+    <div class="famille-tag">Famille MEMDJO</div>
+    <div class="famille-tag">Famille GOUANG</div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p class="footer-verse">
+    « Sois fidèle jusqu'à la mort et je te donnerai la couronne de la vie. »
+  </p>
+  <p class="footer-ref">Apocalypse 2 : 10</p>
+  <p class="footer-name">GOUANG Justin — Père Coach — 1953 · 2026</p>
+</footer>
+
 </body>
 </html>
