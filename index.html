@@ -79,8 +79,6 @@
   }
   .hero-ornament i {
     color: var(--gold);
-    font-size: 1rem;
-    letter-spacing: 4px;
     font-style: normal;
     font-weight: 300;
     font-family: 'Lato', sans-serif;
@@ -91,8 +89,8 @@
   }
 
   .hero-photo-frame {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 3px solid var(--gold);
     padding: 5px;
@@ -102,6 +100,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
   }
 
   .hero-photo-frame::after {
@@ -110,6 +109,14 @@
     inset: -8px;
     border-radius: 50%;
     border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .hero-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
   }
 
   .hero-initials {
@@ -140,9 +147,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .hero-surname {
-    color: var(--gold);
-  }
+  .hero-surname { color: var(--gold); }
 
   .hero-nickname {
     font-family: 'Playfair Display', serif;
@@ -314,7 +319,6 @@
     margin-bottom: 0.2rem;
   }
 
-  /* ── TEXTE BIOGRAPHIE ── */
   .bio-text { color: var(--muted); font-size: 1rem; line-height: 1.85; }
   .bio-text + .bio-text { margin-top: 1.5rem; }
 
@@ -351,11 +355,7 @@
     background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
   }
 
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-  }
-
+  .timeline-item { position: relative; padding-bottom: 2.5rem; }
   .timeline-item:last-child { padding-bottom: 0; }
 
   .timeline-dot {
@@ -385,11 +385,7 @@
     margin-bottom: 0.3rem;
   }
 
-  .timeline-org {
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-weight: 400;
-  }
+  .timeline-org { font-size: 0.9rem; color: var(--muted); font-weight: 400; }
 
   .timeline-desc {
     margin-top: 0.5rem;
@@ -414,10 +410,7 @@
     text-align: center;
   }
 
-  .value-icon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
-  }
+  .value-icon { font-size: 2rem; margin-bottom: 0.8rem; }
 
   .value-name {
     font-family: 'Playfair Display', serif;
@@ -426,11 +419,231 @@
     margin-bottom: 0.4rem;
   }
 
-  .value-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
+  .value-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  .galerie-bg {
+    background: var(--deep);
+    padding: 5rem 0;
+   
   }
+
+  .galerie-bg .section-label span { color: var(--gold); }
+  .galerie-bg .section-title { color: var(--white); }
+
+  .galerie-subtitle {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.9rem;
+    margin-top: -1.2rem;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  /* Grille mosaïque */
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    overflow-y: scroll;
+    height: 60vh;
+  }
+
+  .galerie-grid .g-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--warm);
+    aspect-ratio: 1;
+    border-radius: 2px;
+  }
+
+  .galerie-grid .g-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .g-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease, filter 0.3s ease;
+    filter: brightness(0.88);
+  }
+
+  .g-item:hover img {
+    transform: scale(1.06);
+    filter: brightness(1);
+  }
+
+  .g-item .g-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,7,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .g-item:hover .g-overlay { opacity: 1; }
+
+  .g-overlay-label {
+    color: var(--gold-light);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .g-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(201,168,76,0.35);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px dashed rgba(201,168,76,0.2);
+  }
+
+  .g-placeholder svg { opacity: 0.3; }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,7,3,0.96);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lightbox.open { display: flex; }
+
+  .lb-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    z-index: 2;
+  }
+  .lb-close:hover { opacity: 1; }
+
+  .lb-counter {
+    position: absolute;
+    top: 1.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(201,168,76,0.5);
+    text-transform: uppercase;
+  }
+
+  .lb-img-wrap {
+    max-width: 90vw;
+    max-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  #lb-img {
+    max-width: 90vw;
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    display: block;
+    transition: opacity 0.25s;
+  }
+
+  #lb-img.fading { opacity: 0; }
+
+  .lb-caption {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    font-size: 0.9rem;
+    min-height: 1.4em;
+  }
+
+  .lb-caption span {
+    color: var(--gold);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .lb-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .lb-btn {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold);
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .lb-btn:hover {
+    background: var(--gold);
+    color: var(--deep);
+  }
+
+  .lb-thumbnails {
+    display: flex;
+    gap: 6px;
+    margin-top: 1.2rem;
+    max-width: 90vw;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .lb-thumb {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    opacity: 0.4;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+
+  .lb-thumb.active,
+  .lb-thumb:hover { opacity: 1; border-color: var(--gold); }
 
   /* ── TÉMOIGNAGES ── */
   .temoignages-bg {
@@ -438,10 +651,7 @@
     padding: 5rem 0;
   }
 
-  .temoignages-bg section {
-    max-width: 860px;
-  }
-
+  .temoignages-bg section { max-width: 860px; }
   .temoignages-bg .section-label span { color: var(--gold); }
   .temoignages-bg .section-title { color: var(--white); }
 
@@ -487,10 +697,8 @@
     text-transform: uppercase;
     color: var(--gold);
     font-weight: 700;
-    font-style: normal;
   }
 
-  /* ── FAMILLES ── */
   .familles-grid {
     display: flex;
     flex-wrap: wrap;
@@ -509,7 +717,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* ── FOOTER ── */
   footer {
     background: var(--deep);
     text-align: center;
@@ -541,14 +748,12 @@
     font-weight: 400;
   }
 
-  /* ── SEPARATEUR ── */
   .sep {
     text-align: center;
     color: var(--gold);
     opacity: 0.4;
     font-size: 1.2rem;
     letter-spacing: 8px;
-    margin: 0;
     padding: 1rem 0;
   }
 
@@ -560,18 +765,48 @@
     .bio-grid { grid-template-columns: 1fr; }
     .temoignage-grid { grid-template-columns: 1fr; }
     .values-grid { grid-template-columns: 1fr 1fr; }
+    .galerie-grid { grid-template-columns: repeat(2, 1fr); }
+    .galerie-grid .g-item:first-child { grid-column: span 2; grid-row: span 1; }
   }
+.images{
+  height: 10vh;
+  width: 25%;
+  border-radius: 2px;
+  transition: scale ease 1s;
+}
+.images:hover{
+  scale: 2.5;
+  margin: 23px 27px;
+}
 </style>
 </head>
 <body>
 
-<!-- ══ HERO ══ -->
+<div id="lightbox" role="dialog" aria-label="Visionneuse de photos">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+  <div class="lb-counter" id="lb-counter">1 / 12</div>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <p class="lb-caption" id="lb-caption">
+    <span id="lb-cap-label"></span>
+  </p>
+  <div class="lb-nav">
+    <button class="lb-btn" onclick="lbPrev()">← Précédente</button>
+    <button class="lb-btn" onclick="lbNext()">Suivante →</button>
+  </div>
+  <div class="lb-thumbnails" id="lb-thumbs"></div>
+</div>
+
 <header class="hero">
   <div class="hero-border"></div>
   <div class="hero-content">
 
     <div class="hero-photo-frame">
-      <span class="hero-initials">GJ</span>
+
+      <img src="pictures/p0.jpg" alt="GOUANG Justin"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span class="hero-initials" style="display:none">GJ</span>
     </div>
 
     <div class="hero-dates">1953 — 2026</div>
@@ -605,13 +840,13 @@
   <ul>
     <li><a href="#biographie">Biographie</a></li>
     <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#galerie">Photos</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
     <li><a href="#temoignages">Témoignages</a></li>
     <li><a href="#familles">Familles</a></li>
   </ul>
 </nav>
 
-<!-- ══ BIOGRAPHIE ══ -->
 <section id="biographie">
   <div class="section-label"><span>Biographie</span></div>
   <h2 class="section-title">Un homme né sous le signe de la persévérance</h2>
@@ -638,9 +873,9 @@
   <div style="margin-bottom: 2rem;">
     <div class="bio-text-title">Parcours académique</div>
     <p class="bio-text">
-      Sportif d'exception, GOUANG Justin effectue son premier cycle au Lycée Classique de Bafoussam, 
-      avant de rejoindre le Collège Saint-Michel à Douala, où il décroche son BEPC, son Probatoire et son 
-      Baccalauréat. Il poursuit ensuite ses études supérieures à l'INJS de Dschang, obtenant son Master 
+      Sportif d'exception, GOUANG Justin effectue son premier cycle au Lycée Classique de Bafoussam,
+      avant de rejoindre le Collège Saint-Michel à Douala, où il décroche son BEPC, son Probatoire et son
+      Baccalauréat. Il poursuit ensuite ses études supérieures à l'INJS de Dschang, obtenant son Master
       qui lui ouvre les portes de l'enseignement en tant que professeur d'EPS catégorie A2.
     </p>
   </div>
@@ -648,13 +883,13 @@
   <div>
     <div class="bio-text-title">Une vie dédiée à la jeunesse</div>
     <p class="bio-text">
-      Attaquant de pointe redoutable dans sa jeunesse, il fait les beaux jours de l'Aigle de Dschang avant 
-      de porter avec fierté les couleurs du Racing Club de Bafoussam — son club de cœur, qu'il dirigera 
+      Attaquant de pointe redoutable dans sa jeunesse, il fait les beaux jours de l'Aigle de Dschang avant
+      de porter avec fierté les couleurs du Racing Club de Bafoussam — son club de cœur, qu'il dirigera
       ensuite en tant que coach pendant 15 années de bons et loyaux services.
     </p>
     <p class="bio-text" style="margin-top: 1rem;">
-      Professeur d'EPS, il exerce successivement au Collège Malanguai et au Lycée de Oyack à Bafoussam, 
-      puis au Lycée Classique, au Lycée Bilingue et au Collège Saint-Thomas. Il laisse l'empreinte d'un 
+      Professeur d'EPS, il exerce successivement au Collège Malanguai et au Lycée de Oyack à Bafoussam,
+      puis au Lycée Classique, au Lycée Bilingue et au Collège Saint-Thomas. Il laisse l'empreinte d'un
       pédagogue rigoureux, passionné par l'éducation de la jeunesse camerounaise de Douala et de Bafoussam.
     </p>
   </div>
@@ -662,7 +897,6 @@
 
 <div class="sep">✦ ✦ ✦</div>
 
-<!-- ══ PARCOURS ══ -->
 <div class="alt-bg">
 <section id="parcours">
   <div class="section-label"><span>Parcours</span></div>
@@ -724,7 +958,19 @@
 
 <div class="sep">✦ ✦ ✦</div>
 
-<!-- ══ VALEURS ══ -->
+<div class="galerie-bg" id="galerie">
+<section style="max-width:960px;">
+  <div class="section-label"><span>Album Photos</span></div>
+  <h2 class="section-title">Sa vie en images</h2>
+  <p class="galerie-subtitle">Cliquez sur une photo pour l'agrandir et parcourir l'album</p>
+
+  <div class="galerie-grid" id="galerieGrid">
+  </div>
+</section>
+</div>
+
+<div class="sep">✦ ✦ ✦</div>
+
 <section id="valeurs">
   <div class="section-label"><span>Valeurs & Passions</span></div>
   <h2 class="section-title">Ce qui animait son âme</h2>
@@ -743,7 +989,7 @@
     <div class="value-card">
       <div class="value-icon">🏊</div>
       <div class="value-name">La Natation</div>
-      <p class="value-desc">Sportif complet, il aimait la natation comme discipline de vie et de discipline.</p>
+      <p class="value-desc">Sportif complet, il aimait la natation comme discipline de vie et de caractère.</p>
     </div>
     <div class="value-card">
       <div class="value-icon">♟️</div>
@@ -763,7 +1009,6 @@
   </div>
 </section>
 
-<!-- ══ TÉMOIGNAGES ══ -->
 <div class="temoignages-bg" id="temoignages">
 <section>
   <div class="section-label"><span>Témoignages</span></div>
@@ -772,59 +1017,70 @@
   <div class="temoignage-grid">
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/popina.jpg" alt="popina" class="images"></span>
+
       <p class="temoignage-text">
-        Mon amour de père, tu m'as tellement aimé et chéri de ton vivant. Tu m'as donné tout ce que tu avais... 
-        Je n'est jamais manqué de rien à tes côtés papa chéri. Tu t'es sacrifier pour moi. Tu m'a appris à me 
-        battre dans la vie. Je t'aime Daddy comme je t'aimais t'appeler. Tu part auprès de Dieu maintenant de 
+        Mon amour de père, tu m'as tellement aimé et chéri de ton vivant. Tu m'as donné tout ce que tu avais...
+        Je n'est jamais manqué de rien à tes côtés papa chéri. Tu t'es sacrifier pour moi. Tu m'a appris à me
+        battre dans la vie. Je t'aime Daddy comme je t'aimais t'appeler. Tu part auprès de Dieu maintenant de
         la veille sur nous tes enfants. Je t'aime papa à jamais dans mon cœur.
       </p>
-      <div class="temoignage-author">— Une fille</div>
+      <div class="temoignage-author">— Sa fille TCHOUMTCHOUA CLAIRE</div>
     </div>
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/lavoisier.jpg" alt="lavoisier" class="images"></span>
+
       <p class="temoignage-text">
-        Mon père, mon héros. Tu m'as appris à connaître la vie d'un homme, tu m'as appris à manger à la sueur 
-        de mon front, tu m'as appris à marcher seul que d'être mal accompagner. Papa mon héros je serais pas 
-        trop long — garde nous, protège nous et que le père tout puissant t'accueille dans son royaume. 
+        Mon père, mon héros. Tu m'as appris à connaître la vie d'un homme, tu m'as appris à manger à la sueur
+        de mon front, tu m'as appris à marcher seul que d'être mal accompagner. Papa mon héros je serais pas
+        trop long — garde nous, protège nous et que le père tout puissant t'accueille dans son royaume.
         Papa GOUANG Justin dit Père Coach, vas et repose en Paix.
       </p>
-      <div class="temoignage-author">— Un fils</div>
+      <div class="temoignage-author">— son fils FFOUASSE LAVOISIER</div>
     </div>
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/mama.PNG" alt="mama" class="images"></span>
+
       <p class="temoignage-text">
-        Justin mon homme, le père de mes enfants. Tu laisse une blessure dans mon cœur et dans le cœur de nos 
-        enfants. Mes saches que tu as laissé un vide et je ne saurais comment combler cela. Car à jamais tu 
+        Justin mon homme, le père de mes enfants. Tu laisse une blessure dans mon cœur et dans le cœur de nos
+        enfants. Mes saches que tu as laissé un vide et je ne saurais comment combler cela. Car à jamais tu
         restera gravé dans nos cœurs Justin. Vas et repose en paix — à toi les fleurs et à nous les pleurs.
       </p>
-      <div class="temoignage-author">— Son épouse</div>
+      <div class="temoignage-author">— Son épouse NKONGSI ANGELINE</div>
     </div>
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/kayo.jpg" alt="kayo" class="images"></span>
+
       <p class="temoignage-text">
-        Papa je te remercie pour les bons moments passés avec toi. C'est dur de se séparer mais Dieu à décider 
-        ainsi et je sais que tu vas bénir ta progéniture là-bas dans les cieux. Merci papa je t'aime et sache 
+        Papa je te remercie pour les bons moments passés avec toi. C'est dur de se séparer mais Dieu à décider
+        ainsi et je sais que tu vas bénir ta progéniture là-bas dans les cieux. Merci papa je t'aime et sache
         que ton véritable tombeau c'est nos cœurs. Repose en paix mon super héros.
       </p>
-      <div class="temoignage-author">— Un enfant</div>
+      <div class="temoignage-author">— Son fils KAHYOH LANDRY</div>
     </div>
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/sp.jpg" alt="sipoueh" class="images"></span>
       <p class="temoignage-text">
-        Tu as été et tu seras toujours mon modèle. J'espère que tu me guideras comme tu l'as toujours fait et 
-        que tu seras toujours fière de moi grand homme, mon père, mon papa. Nous resterons fort comme tu nous 
+        Tu as été et tu seras toujours mon modèle. J'espère que tu me guideras comme tu l'as toujours fait et
+        que tu seras toujours fière de moi grand homme, mon père, mon papa. Nous resterons fort comme tu nous
         l'as montré, comme tu l'as toujours été. Je t'aime fort papa. Que ton âme Repose en Paix.
       </p>
-      <div class="temoignage-author">— Un enfant</div>
+      <div class="temoignage-author">—Son fils SIPOUEH GOUANG </div>
     </div>
 
     <div class="temoignage-card">
+      <span class="round"><img src="pictures/princesse.JPG" alt="princesse" class="images"></span>
+
       <p class="temoignage-text">
-        Mon petit papa chéri, à mes yeux tu as toujours été un grand modèle et tu le seras à jamais. Aujourd'hui 
-        tu n'es plus présent en chair et en os mais je sais que tu es là juste prêt de nous. Tu demeures le 
+        Mon petit papa chéri, à mes yeux tu as toujours été un grand modèle et tu le seras à jamais. Aujourd'hui
+        tu n'es plus présent en chair et en os mais je sais que tu es là juste prêt de nous. Tu demeures le
         meilleur papa du monde. Nous t'aimons à jamais Coach. Repose en Paix.
       </p>
-      <div class="temoignage-author">— Un enfant</div>
+      <div class="temoignage-author">— Sa fille MEFOMDJO PRINCESSE</div>
     </div>
 
   </div>
@@ -833,28 +1089,25 @@
 
 <div class="sep">✦ ✦ ✦</div>
 
-<!-- ══ FAMILLES ══ -->
 <section id="familles">
   <div class="section-label"><span>Familles endeuillées</span></div>
   <h2 class="section-title">Ceux qui partagent ce deuil</h2>
 
   <p class="bio-text" style="margin-bottom: 1.5rem;">
-    Les familles suivantes ont la profonde douleur d'annoncer le décès de leur père et grand-père, 
+    Les familles suivantes ont la profonde douleur d'annoncer le décès de leur père et grand-père,
     <strong>PAPA GOUANG Justin</strong>, survenu le <strong>4 Avril 2026</strong> à Bafoussam.
   </p>
 
   <div class="familles-grid">
-    <div class="famille-tag">Famille NDONGAM Elene</div>
-    <div class="famille-tag">Famille TAFAM</div>
+    <div class="famille-tag">Famille GOUANG</div>
     <div class="famille-tag">Famille Deffo MEGAM</div>
+    <div class="famille-tag">Famille NDONGAM Elene</div>
     <div class="famille-tag">Famille Poline MEMDJO</div>
     <div class="famille-tag">Famille METAH FAM</div>
     <div class="famille-tag">Famille MEMDJO</div>
-    <div class="famille-tag">Famille GOUANG</div>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <p class="footer-verse">
     « Sois fidèle jusqu'à la mort et je te donnerai la couronne de la vie. »
@@ -862,6 +1115,193 @@
   <p class="footer-ref">Apocalypse 2 : 10</p>
   <p class="footer-name">GOUANG Justin — Père Coach — 1953 · 2026</p>
 </footer>
+
+<script>
+const photos = [
+  {
+    url:     "pictures/p0.jpg",
+    caption: "Papa GOUANG Justi",
+    label:   "Portrait"
+  },
+ 
+  {
+    url:     "pictures/p20.jpg",
+    caption: "souvenirs",
+    label:   "Famille"
+  },
+  {
+    url:     "pictures/p19.jpg",
+    caption: "souvenirs",
+    label:   "Football"
+  },
+  {
+    url:     "pictures/pel.jpg",
+    caption: "Avec ses élèves",
+    label:   "Enseignement"
+  },
+  {
+    url:     "pictures/fet.png",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+  {
+    url:     "pictures/p6.jpg",
+    caption: "souvenirs",
+    label:   "Grand-père"
+  },
+  {
+    url:     "pictures/p21.jpg",
+    caption: "Sur le banc de touche",
+    label:   "Coach"
+  },
+  {
+    url:     "pictures/p3.jpg",
+    caption: "pendant son enfance",
+    label:   "Souvenirs"
+  },
+  
+  {
+    url:     "pictures/epo.png",
+    caption: "Avec son épouse",
+    label:   "Couple"
+  },
+  
+
+  {
+    url:     "pictures/p13.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p14.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p15.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p16.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p17.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p18.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+    {
+    url:     "pictures/p19.jpg",
+    caption: "souvenir",
+    label:   "Souvenirs"
+  },
+
+];
+
+const grid = document.getElementById('galerieGrid');
+
+photos.forEach((p, i) => {
+  const item = document.createElement('div');
+  item.className = 'g-item';
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('role', 'button');
+  item.setAttribute('aria-label', p.caption || `Photo ${i + 1}`);
+
+  const isPlaceholder = p.url.startsWith('URL_PHOTO');
+
+  if (isPlaceholder) {
+    item.innerHTML = `
+      <div class="g-placeholder">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        Photo ${i + 1}
+      </div>`;
+  } else {
+    item.innerHTML = `
+      <img src="${p.url}" alt="${p.caption || ''}" loading="lazy">
+      <div class="g-overlay"><span class="g-overlay-label">${p.label || ''}</span></div>`;
+  }
+
+  item.addEventListener('click', () => openLightbox(i));
+  item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(i); });
+  grid.appendChild(item);
+});
+
+/* ─────────────────────────────────────────
+   Lightbox
+───────────────────────────────────────── */
+let lbIndex = 0;
+const lb       = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lb-img');
+const lbCap    = document.getElementById('lb-caption');
+const lbCapLbl = document.getElementById('lb-cap-label');
+const lbCount  = document.getElementById('lb-counter');
+const lbThumbs = document.getElementById('lb-thumbs');
+
+/* Construire les miniatures */
+photos.forEach((p, i) => {
+  if (!p.url.startsWith('URL_PHOTO')) {
+    const t = document.createElement('img');
+    t.src = p.url;
+    t.className = 'lb-thumb';
+    t.alt = p.caption || '';
+    t.dataset.index = i;
+    t.addEventListener('click', () => lbGoto(i));
+    lbThumbs.appendChild(t);
+  }
+});
+
+function openLightbox(index) {
+  lbIndex = index;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbRender();
+}
+
+function closeLightbox() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbRender() {
+  const p = photos[lbIndex];
+  lbImg.classList.add('fading');
+  setTimeout(() => {
+    lbImg.src = p.url.startsWith('URL_PHOTO') ? '' : p.url;
+    lbImg.alt = p.caption || '';
+    lbCap.childNodes[0].textContent = p.caption || '';
+    lbCapLbl.textContent = p.label || '';
+    lbCount.textContent = `${lbIndex + 1} / ${photos.length}`;
+    lbImg.classList.remove('fading');
+  }, 230);
+
+  document.querySelectorAll('.lb-thumb').forEach(t => {
+    t.classList.toggle('active', parseInt(t.dataset.index) === lbIndex);
+  });
+}
+
+function lbNext() { lbIndex = (lbIndex + 1) % photos.length; lbRender(); }
+function lbPrev() { lbIndex = (lbIndex - 1 + photos.length) % photos.length; lbRender(); }
+function lbGoto(i) { lbIndex = i; lbRender(); }
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'Escape')     closeLightbox();
+});
+
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+</script>
 
 </body>
 </html>
